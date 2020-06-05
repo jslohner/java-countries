@@ -4,6 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CountryList {
+	public Country findCountry(CheckCountry tester) {
+		for (Country c : countryList) {
+			if (tester.test(c)) {
+				return c;
+			}
+		}
+		return null;
+	}
+
 	public List<Country> findCountries(CheckCountry tester) {
 		List<Country> filteredCountries = new ArrayList<>();
 

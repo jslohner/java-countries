@@ -15,21 +15,21 @@ public class NamesController {
 
 	@GetMapping(value = "/all", produces = {"application/json"})
 	public ResponseEntity<?> getAllCountries() {
-	JavaCountriesApplication.countryData.countryList.sort((c1, c2) -> c1.getName().compareToIgnoreCase(c2.getName()));
-	return new ResponseEntity<>(JavaCountriesApplication.countryData.countryList, HttpStatus.OK);
+		JavaCountriesApplication.countryData.countryList.sort((c1, c2) -> c1.getName().compareToIgnoreCase(c2.getName()));
+		return new ResponseEntity<>(JavaCountriesApplication.countryData.countryList, HttpStatus.OK);
 	}
 
 	@GetMapping(value = "/start/{nameLetter}", produces = {"application/json"})
 	public ResponseEntity<?> getCountriesByStartingLetter(@PathVariable char nameLetter) {
-	List<Country> filteredList = JavaCountriesApplication.countryData.findCountries(c -> (Character.toLowerCase(c.getName().charAt(0)) == Character.toLowerCase(nameLetter)));
-	filteredList.sort((c1, c2) -> c1.getName().compareToIgnoreCase(c2.getName()));
-	return new ResponseEntity<>(filteredList, HttpStatus.OK);
+		List<Country> filteredList = JavaCountriesApplication.countryData.findCountries(c -> (Character.toLowerCase(c.getName().charAt(0)) == Character.toLowerCase(nameLetter)));
+		filteredList.sort((c1, c2) -> c1.getName().compareToIgnoreCase(c2.getName()));
+		return new ResponseEntity<>(filteredList, HttpStatus.OK);
 	}
 
 	@GetMapping(value = "/size/{nameLength}", produces = {"application/json"})
 	public ResponseEntity<?> getCountriesByNameLength(@PathVariable long nameLength) {
-	List<Country> filteredList = JavaCountriesApplication.countryData.findCountries(c1 -> c1.getName().length() >= nameLength);
-	filteredList.sort((c1, c2) -> c1.getName().compareToIgnoreCase(c2.getName()));
-	return new ResponseEntity<>(filteredList, HttpStatus.OK);
+		List<Country> filteredList = JavaCountriesApplication.countryData.findCountries(c -> c.getName().length() >= nameLength);
+		filteredList.sort((c1, c2) -> c1.getName().compareToIgnoreCase(c2.getName()));
+		return new ResponseEntity<>(filteredList, HttpStatus.OK);
 	}
 }
